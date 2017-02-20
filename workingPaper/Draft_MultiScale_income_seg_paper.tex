@@ -1,0 +1,187 @@
+\documentclass[11.5pt]{article}
+
+
+% encoding 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% lang
+\usepackage[english]{babel}
+
+% general packages without options
+\usepackage{amsmath,amssymb,amsthm,bbm}
+
+% graphics
+\usepackage{graphicx,transparent,eso-pic}
+
+% text formatting
+\usepackage[document]{ragged2e}
+\usepackage{pagecolor,color}
+%\usepackage{ulem}
+\usepackage{soul}
+\usepackage{eurosym}
+
+
+% geometry
+\usepackage[margin=2cm]{geometry}
+
+% layout : use fancyhdr package
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\makeatletter
+
+
+%% Commands
+
+\newcommand{\noun}[1]{\textsc{#1}}
+
+% running head/foot
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[RO,RE]{\textit{}}
+\fancyhead[LO,LE]{}
+\fancyfoot[RO,RE] {\thepage}
+\fancyfoot[LO,LE] {CC}
+\fancyfoot[CO,CE] {}
+
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Begin doc
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+
+
+\title{Draft ideas for a paper on the Multi scale measures of income segregation \\
+}
+
+\author{\noun{C. Cottineau}}
+
+
+\maketitle
+
+\justify
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Context and Motivation
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Literature review on economic inequality and segregation in cities}
+
+\subsection{Economic inequality, space and scales}
+
+\paragraph{Inequality measure in envelopes of various size / scales}
+\begin{itemize}
+\item Usually, inequality is measured, analysed and compared at the {\bf national} level. This is the case of all the iconic contributions of economists in the last couple of years \cite{piketty_capital_2013, atkinson_inequality_2015, stiglitz_2015_The}. This is the scale at which causes of inequality are searched and the scale at which policy solutions are searched in economics.
+\item {\bf Regional} studies acknowledge another level of economic inequality and takes into account the fact that national societies are not a-spatial but that agents of different income reside and operate in different locations. Regional disparities refer to differences of wealth, productivity and prices across regions \cite{Kanbur_2005_spatial, McCann_2016_the} whereas inner regional inequality is usually approached through the rural/urban divide \cite{Young_2013_inequality, Royuela_2014_income}.
+\item {\bf Urban} inequality measures are generally seldom, and produced either for US metropolitan areas, in the form of Gini coefficients \cite{long1977income} or a larger sets of measures \cite{glaeser_inequality_2009}, either for capital cities in rich countries \cite{tammaru_2015_socio, Boulant_2016_Income} because capital cities usually correspond to administrative regions. In the absence of individual income data at the city level, estimations are sometimes based on declared income for tax purposes \cite{cottineau_defining_2016} or a mix of earnings and benefits data \cite{centre_for_cities_cities_2017}.
+\end{itemize}
+
+Although it might seem straightforward that inequality at one geographical scale constrains the level of inequality at finer scales, most urban studies of inequality do not relate to regional or national scales. Exceptions are found in works focusing on the spatial decomposition of inequality, where an index of inequality at one scale is decomposed into two components: the inequality between units of a lower scale and inequality within them.
+
+\paragraph{Decomposition of inequality in two levels}
+\begin{itemize}
+\item Focusing on the national and regional scales,\cite{shorrocks_spatial_2005} review the empirical regularities of inequality decomposition. They find that the between-group component is generally much smaller than the within-group component "except in the case of dural-urban divide" [p. 68], that earnings inequality is smaller than income or consumption inequality, and finally that the between-group component artificially rises with the number of subgroups chosen for the analysis.
+\item Tangentially, \cite{polese_cities_2005} questions the causal direction in the relationship between cities and the national scale in the context of agglomeration economies (are cities contributing more to growth or are they just increasing their share of the pie over time?). Its theoretical conclusion is that the foundations of economic growth lie at the national scale (specialisation, institutions, factors) whereas the city scale is limited to the delivery of local residential services within the overarching national context.
+\item At a finer scale, \cite{wheeler_urban_2006} decomposes urban inequality within and between neighbourhoods in the US metropolitan areas and finds that the between-neighbourhood share of inequality is smaller than the within-neighbourhood component, but that the former is rising (from 13 to 22\% between 1980 and 2000).
+\end{itemize}
+
+This last piece of work can also be described as a piece on income segregation. Interestingly enough, it seems that there is a persistant (and rather artificial) division of labour between the study of inequality at the national scale and the study of segregation at the city scale. New multi-scale accounts of segregation might be a first step towards an integration of the two domains of research.
+
+\subsection{New multi-scale accounts of segregation}
+
+\begin{itemize}
+\item \cite{manley_macro-_2015} propose to keep the nested structure of administrative divisions (localities, areas, meshblocks) in their measure of racial segregation in Auckland. They use scale and time ratios to differentiate the distribution of minorities in the city, concluding that segregation for the three minorities are greatest at the macro-scale, but is significantly decreasing only at the micro-scale over time. This multi-scale account suggests mechanisms of migration strategies in a way which former measures of segregation could not.
+\item An alternative to the nested administrative structure is the computation of egocentric neighbourhoods from individual or very fine grained data. For example to draw such neighbourhoods based on distance \cite{lee_beyond_2008, andersson_what_2010} or on the number of neighbours \cite{andersson_contextual_2015} enables one to compare the scale of segregation. \cite{lee_beyond_2008} find for example that some minorities are macro-segregated in US metropolitan areas, such as Blacks towards Whites, whereas Asian and Hispanics tend to be segregated at a more micro level. This approach allows them to look for different explanations of segregation at different levels. The share of homeowners and of elderly people for example affect the expected levels of segregation locally but not at the scale of city, whereas the regional location and the proportion of minority are correlated with segregation levels at the macro level.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{A multi scale index of income segregation}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Case studies and data}
+
+We chose to apply this new measure to two developed urban cases: France and the United States.
+
+\subsection{USA}
+
+Using the 'acs' and 'tigris' R packages, we extracted the number of people of each income category for each tract of each metropolitan and micropolitan areas of the USA\footnote{https://censusreporter.org/tables/B07010/}	
+	
+\begin{table}[h!]
+\caption{Distribution of US households per income category, 2010-2015}
+\label{tab:incomeUSA}
+\centering
+\begin{tabular}{|c|c|c|c|c||} 
+\hline
+Cat. & Individual Annual Income of population 15+ & N & \% \\ \hline
+ Income0 & No income& 35,851,899 & 14.0 \\
+ Income1 & \$1 to \$9,999 or loss & 44,035,497 & 17.2 \\
+ Income2 & \$10,000 to \$14,999 & 22,958,142 & 9.0 \\
+ Income3 & \$15,000 to \$24,999 & 36,243,973 & 14.2 \\
+ Income4 & \$25,000 to \$34,999 & 28,015,690 & 11.0 \\
+ Income5 & \$35,000 to \$49,999 & 29,790,139 & 11.7 \\
+ Income6 & \$50,000 to \$64,999 &  20,416,837& 8.0 \\
+ Income7 & \$65,000 to \$74,999 & 8,425,882 & 3.3 \\
+Income8 & \$75,000 or more & 29,683,176 &11.6 \\ \hline
+ & Total & 255,421,235 &  100 \\ \hline
+\end{tabular}
+\end{table}
+							
+
+\subsection{France}
+
+
+Using the data portal of the French taxation office, we extracted the number of households of each income category for each commune of each metropolitan area of France\footnote{http://www2.impots.gouv.fr/documentation/statistiques/ircom2011/ir2011.htm}.		
+
+\begin{table}[h!]
+\begin{center}
+\caption{Distribution of French households per income, 2011}
+\label{tab:incomeFr}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Cat. & Income (k\euro) & N households & \% & of total* \\ \hline
+B1 & $0 - 10$   & 6,380,662 & 24.0 & 18.1 \\
+B2 & $10 - 12$   & 1,614,293 & 6.1 & 4.6  \\
+B3 & $12 - 15$   & 2,616,818 & 9.8 & 7.4 \\
+B4 & $15- 20$   & 4,279,602 & 16.1 & 12.2 \\
+B5 & $20 - 30$   & 4,766,371 & 17.9 & 13.5 \\
+B6 & $30 - 50$   & 4,323,569 & 16.3 & 12.3 \\
+B7 & $50 - 100$   & 2,094,955 & 7.9 & 6.0 \\
+B8 & $> 100$  \euro & 522,190 & 2.0 & 1.5\\ \hline
+ & Total & 26,598,460 & 100 & 75.6  \\ \hline
+\end{tabular}
+\end{center}
+\small *The number of households (35,178,358) is higher than the number of households for which we know the income bracket (26,598,460). We end up with 75.6\% of the distributional information.
+\end{table}
+
+
+\subsection{UK}
+
+TBD
+%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Biblio
+%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{apalike}
+\bibliography{Economic_Diversity}
+
+
+\end{document}
